@@ -1,0 +1,5 @@
+name: dPaperAddon
+authors: ['mergu']
+version: ${project.version} (build ${BUILD_NUMBER})
+main: net.mergu.dpaperaddon.dPaperAddon
+depend: [Denizen]
