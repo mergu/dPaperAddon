@@ -1,5 +1,8 @@
 language: java
 
+# Skip tests
+install: true
+
 before_deploy:
   - "mvn -Dbuild_number=$TRAVIS_BUILD_NUMBER -DskipTests package"
   - export FILE=$(ls target/*.jar)
