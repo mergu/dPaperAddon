@@ -6,13 +6,15 @@ install: true
 before_deploy:
   - mvn -Dbuild_number=$TRAVIS_BUILD_NUMBER -DskipTests package
   - export FILE=$(ls target/*.jar)
+  - 'export NAME="Build #$TRAVIS_BUILD_NUMBER"'
   - git config --local user.name "mergu"
   - git config --local user.email "jhopkins@vt.edu"
-  - 'export GIT_TAG="Build-#$TRAVIS_BUILD_NUMBER"'
+  - 'export GIT_TAG="b$TRAVIS_BUILD_NUMBER"'
   - git tag $GIT_TAG -a -m "Generated tag from TravisCI for build $TRAVIS_BUILD_NUMBER"
 
 deploy:
   provider: releases
+  name: $NAME
   api_key:
     secure: "sQ7gj7+XoWliasboGz7Kyrr+x/lirBlH3VziUZ1UKtq2qzi93B5K4cJP+IiwkLBVIwJ/X5YRWyEiRTdDlI75sEnjn+Wj6udZUZOPfllNUfKC+I3L9HAQ6lxgpyLeisJGDp+gtPT7d6ebYatgcbruRjou5rIB0wIYW4pcU0tp64j0T7fYK3uGZbVipB97C1mGSIJmi6JXKvtTsR/dxy9jDD0H1vClGARNCgANzUJmbMK+7ORR7gcwgdMKfh07SYfEFAu0CcU/2DlvpHQrlFGDE+uK2NkY8WnOxWqedc8xyHHSfh62dollOhkQsXmGKaPKtPaWDGAFpP5ZuP56PaG7m2DS8IYIAV5SDXzSZ4P+N75d60EEkZtwu/aZTJC25HN2NVeT03I2SYLvIojfJhI+igJitumX9B6/xmOMe6acmTt284CVyh+cli2ffYk61HjlbIT7XNfzAqIKENOaXTePMZbQfeK+fYVT+kiuByNoKSQnCtPks4A5KJMn5u76gTuRbhEOgi8DgaS081QPl4vmQ0aPDrNtWa9xQSpF64utBnynBwuoNVKMFVRGxyQ8w+nScmFflv1HrxUT5WjS7Oanyir/1DAh8pwotQLVTadCSLDEna/HsvydvDS0nJoXo76rtAEUjob/r3uuU+OIG6OpGS0wNkb27Lx2wmuLEypb4HY="
   file: "${FILE}"
