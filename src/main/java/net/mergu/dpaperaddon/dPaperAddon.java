@@ -10,7 +10,13 @@ public class dPaperAddon extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        dB.log("dPaperAddon loaded!");
+        if (!getServer().getName().equalsIgnoreCase("paper")) {
+            dB.echoError("Could not enable dPaperAddon. Are you running Paper?");
+            getServer().getPluginManager().disablePlugin(this);
+            return;
+        }
+
+        dB.log("dPaperAddon enabled!");
         registerCommands();
         registerEvents();
         instance = this;
