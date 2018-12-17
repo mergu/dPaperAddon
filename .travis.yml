@@ -9,7 +9,7 @@ before_deploy:
   - git config --local user.name "mergu"
   - git config --local user.email "jhopkins@vt.edu"
   - 'export GIT_TAG="Build #$TRAVIS_BUILD_NUMBER"'
-  - git tag $GIT_TAG -a -m "Generated tag from TravisCI for build $TRAVIS_BUILD_NUMBER"
+  - 'git tag "$GIT_TAG" -a -m "Generated tag from TravisCI for build $TRAVIS_BUILD_NUMBER"'
 
 deploy:
   provider: releases
