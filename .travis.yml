@@ -1,14 +1,12 @@
 language: java
 
 before_deploy:
-  - mvn -Dbuild_number=$TRAVIS_BUILD_NUMBER -DskipTests package
+  - "mvn -Dbuild_number=$TRAVIS_BUILD_NUMBER -DskipTests package"
   - export FILE=$(ls target/*.jar)
   - git config --local user.name "mergu"
   - git config --local user.email "jhopkins@vt.edu"
-  # - export s=${FILE#*-}
-  # - export GIT_TAG=${s%.*}
-  - export GIT_TAG=$FILE
-  - git tag $GIT_TAG
+  - export GIT_TAG=b$TRAVIS_BUILD_NUMBER
+  - git tag $GIT_TAG -a -m "Generated tag from TravisCI for build $TRAVIS_BUILD_NUMBER"
 
 deploy:
   provider: releases
