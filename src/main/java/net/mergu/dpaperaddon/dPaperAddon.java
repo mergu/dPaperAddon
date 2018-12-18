@@ -2,7 +2,8 @@ package net.mergu.dpaperaddon;
 
 import net.aufdemrand.denizen.utilities.debugging.dB;
 import net.aufdemrand.denizencore.events.ScriptEvent;
-import net.mergu.dpaperaddon.events.PlayerArmorChangeScriptEvent;
+import net.mergu.dpaperaddon.events.player.PaperPlayerArmorChangeScriptEvent;
+import net.mergu.dpaperaddon.events.server.PaperServerListPingScriptEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class dPaperAddon extends JavaPlugin {
@@ -27,6 +28,7 @@ public class dPaperAddon extends JavaPlugin {
     }
 
     private void registerEvents() {
-        ScriptEvent.registerScriptEvent(new PlayerArmorChangeScriptEvent());
+        ScriptEvent.registerScriptEvent(new PaperPlayerArmorChangeScriptEvent());
+        ScriptEvent.registerScriptEvent(new PaperServerListPingScriptEvent());
     }
 }

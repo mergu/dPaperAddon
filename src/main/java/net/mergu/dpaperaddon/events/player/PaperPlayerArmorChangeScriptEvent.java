@@ -1,4 +1,4 @@
-package net.mergu.dpaperaddon.events;
+package net.mergu.dpaperaddon.events.player;
 
 import com.destroystokyo.paper.event.player.PlayerArmorChangeEvent;
 import net.aufdemrand.denizen.BukkitScriptEntryData;
@@ -15,12 +15,30 @@ import org.bukkit.Bukkit;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 
-public class PlayerArmorChangeScriptEvent extends ScriptEvent implements Listener {
-    public static PlayerArmorChangeScriptEvent instance;
+public class PaperPlayerArmorChangeScriptEvent extends ScriptEvent implements Listener {
+
+    // <--[event]
+    // @Events
+    // paper player armor change
+    //
+    // @Regex ^on paper player armor change$
+    //
+    // @Cancellable false
+    //
+    // @Triggers when a player changes their equipped armor.
+    //
+    // @Context
+    // <context.slot_type> returns the type of slot being altered.
+    // <context.new_item> returns the new dItem.
+    // <context.old_item> returns the old dItem.
+    //
+    // -->
+
+    public static PaperPlayerArmorChangeScriptEvent instance;
 
     public PlayerArmorChangeEvent event;
 
-    public PlayerArmorChangeScriptEvent() {
+    public PaperPlayerArmorChangeScriptEvent() {
         instance = this;
     }
 
@@ -52,11 +70,6 @@ public class PlayerArmorChangeScriptEvent extends ScriptEvent implements Listene
     @Override
     public ScriptEntryData getScriptEntryData() {
         return new BukkitScriptEntryData(dPlayer.mirrorBukkitPlayer(event.getPlayer()), null);
-    }
-
-    @Override
-    public boolean applyDetermination(ScriptContainer container, String determination) {
-        return super.applyDetermination(container, determination);
     }
 
     @Override
