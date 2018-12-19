@@ -2,6 +2,7 @@ package net.mergu.dpaperaddon.events.player;
 
 import com.destroystokyo.paper.event.player.PlayerArmorChangeEvent;
 import net.aufdemrand.denizen.BukkitScriptEntryData;
+import net.aufdemrand.denizen.objects.dEntity;
 import net.aufdemrand.denizen.objects.dItem;
 import net.aufdemrand.denizen.objects.dPlayer;
 import net.aufdemrand.denizen.utilities.DenizenAPI;
@@ -15,7 +16,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 
-public class PaperPlayerArmorChangeScriptEvent extends ScriptEvent implements Listener {
+public class PlayerArmorChangeScriptEvent extends ScriptEvent implements Listener {
 
     // <--[event]
     // @Events
@@ -34,11 +35,14 @@ public class PaperPlayerArmorChangeScriptEvent extends ScriptEvent implements Li
     //
     // -->
 
-    public static PaperPlayerArmorChangeScriptEvent instance;
+    public static PlayerArmorChangeScriptEvent instance;
 
     public PlayerArmorChangeEvent event;
+    private Element slot_type;
+    private dItem new_item;
+    private dItem old_item;
 
-    public PaperPlayerArmorChangeScriptEvent() {
+    public PlayerArmorChangeScriptEvent() {
         instance = this;
     }
 
@@ -76,11 +80,11 @@ public class PaperPlayerArmorChangeScriptEvent extends ScriptEvent implements Li
     public dObject getContext(String name) {
         switch (name) {
             case "slot_type":
-                return new Element(event.getSlotType().name());
+                return slot_type;
             case "new_item":
-                return new dItem(event.getNewItem());
+                return new_item;
             case "old_item":
-                return new dItem(event.getOldItem());
+                return old_item;
             default:
                 return super.getContext(name);
         }
@@ -88,6 +92,13 @@ public class PaperPlayerArmorChangeScriptEvent extends ScriptEvent implements Li
 
     @EventHandler
     public void onPlayerArmorChange(PlayerArmorChangeEvent event) {
+        if (dEntity.isNPC(event.getPlayer())) {
+            return;
+        }
+
+        slot_type = new Element(event.getSlotType().name());
+        new_item = new dItem(event.getNewItem());
+        old_item = new dItem(event.getOldItem());
         this.event = event;
         fire();
     }

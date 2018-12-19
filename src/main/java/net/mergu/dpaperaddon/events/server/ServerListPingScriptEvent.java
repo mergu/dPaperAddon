@@ -19,7 +19,7 @@ import org.bukkit.util.CachedServerIcon;
 import java.io.File;
 import java.util.List;
 
-public class PaperServerListPingScriptEvent extends ScriptEvent implements Listener {
+public class ServerListPingScriptEvent extends ScriptEvent implements Listener {
 
     // <--[event]
     // @Events
@@ -49,7 +49,7 @@ public class PaperServerListPingScriptEvent extends ScriptEvent implements Liste
     //
     // -->
 
-    public static PaperServerListPingScriptEvent instance;
+    public static ServerListPingScriptEvent instance;
 
     public PaperServerListPingEvent event;
     private Element motd;
@@ -61,7 +61,7 @@ public class PaperServerListPingScriptEvent extends ScriptEvent implements Liste
     private CachedServerIcon icon;
     private boolean hide_players;
 
-    public PaperServerListPingScriptEvent() {
+    public ServerListPingScriptEvent() {
         instance = this;
     }
 
