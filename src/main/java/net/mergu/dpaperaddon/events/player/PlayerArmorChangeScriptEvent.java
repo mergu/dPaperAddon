@@ -2,11 +2,11 @@ package net.mergu.dpaperaddon.events.player;
 
 import com.destroystokyo.paper.event.player.PlayerArmorChangeEvent;
 import net.aufdemrand.denizen.BukkitScriptEntryData;
+import net.aufdemrand.denizen.events.BukkitScriptEvent;
 import net.aufdemrand.denizen.objects.dEntity;
 import net.aufdemrand.denizen.objects.dItem;
 import net.aufdemrand.denizen.objects.dPlayer;
 import net.aufdemrand.denizen.utilities.DenizenAPI;
-import net.aufdemrand.denizencore.events.ScriptEvent;
 import net.aufdemrand.denizencore.objects.Element;
 import net.aufdemrand.denizencore.objects.dObject;
 import net.aufdemrand.denizencore.scripts.ScriptEntryData;
@@ -16,11 +16,11 @@ import org.bukkit.Bukkit;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 
-public class PlayerArmorChangeScriptEvent extends ScriptEvent implements Listener {
+public class PlayerArmorChangeScriptEvent extends BukkitScriptEvent implements Listener {
 
     // <--[event]
     // @Events
-    // paper player armor change
+    // paper player armor change (in <area>)
     //
     // @Regex ^on paper player armor change$
     //
@@ -53,7 +53,7 @@ public class PlayerArmorChangeScriptEvent extends ScriptEvent implements Listene
 
     @Override
     public boolean matches(ScriptContainer scriptContainer, String s) {
-        return true;
+        return runInCheck(scriptContainer, s, CoreUtilities.toLowerCase(s), event.getPlayer().getLocation());
     }
 
     @Override
