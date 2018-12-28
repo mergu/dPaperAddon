@@ -2,7 +2,7 @@
 
 ```
 @Events
-paper player armor change (in <area>)
+paper player changes armor (in <area>)
 
 @Cancellable false
 
@@ -32,7 +32,7 @@ paper player stops spectating (<entity>) (in <area>)
 
 ```
 @Events
-paper server exception
+paper server generates exception
 
 @Cancellable false
 

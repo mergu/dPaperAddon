@@ -16,13 +16,13 @@ import org.bukkit.Bukkit;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 
-public class PlayerArmorChangeScriptEvent extends BukkitScriptEvent implements Listener {
+public class PlayerChangesArmorScriptEvent extends BukkitScriptEvent implements Listener {
 
     // <--[event]
     // @Events
-    // paper player armor change (in <area>)
+    // paper player changes armor (in <area>)
     //
-    // @Regex ^on paper player armor change$
+    // @Regex ^on paper player changes armor$
     //
     // @Cancellable false
     //
@@ -35,20 +35,20 @@ public class PlayerArmorChangeScriptEvent extends BukkitScriptEvent implements L
     //
     // -->
 
-    public static PlayerArmorChangeScriptEvent instance;
+    public static PlayerChangesArmorScriptEvent instance;
 
     public PlayerArmorChangeEvent event;
     private Element slot_type;
     private dItem new_item;
     private dItem old_item;
 
-    public PlayerArmorChangeScriptEvent() {
+    public PlayerChangesArmorScriptEvent() {
         instance = this;
     }
 
     @Override
     public boolean couldMatch(ScriptContainer scriptContainer, String s) {
-        return CoreUtilities.toLowerCase(s).startsWith("paper player armor change");
+        return CoreUtilities.toLowerCase(s).startsWith("paper player changes armor");
     }
 
     @Override
@@ -58,7 +58,7 @@ public class PlayerArmorChangeScriptEvent extends BukkitScriptEvent implements L
 
     @Override
     public String getName() {
-        return "PaperPlayerArmorChange";
+        return "PaperPlayerChangesArmor";
     }
 
     @Override
