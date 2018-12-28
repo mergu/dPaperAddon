@@ -12,13 +12,13 @@ import org.bukkit.Bukkit;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 
-public class ServerExceptionScriptEvent extends ScriptEvent implements Listener {
+public class ServerGeneratesExceptionScriptEvent extends ScriptEvent implements Listener {
 
     // <--[event]
     // @Events
-    // paper server exception
+    // paper server generates exception
     //
-    // @Regex ^on paper server exception$
+    // @Regex ^on paper server generates exception$
     //
     // @Cancellable false
     //
@@ -30,18 +30,18 @@ public class ServerExceptionScriptEvent extends ScriptEvent implements Listener 
     //
     // -->
 
-    public static ServerExceptionScriptEvent instance;
+    public static ServerGeneratesExceptionScriptEvent instance;
 
     public ServerExceptionEvent event;
     private ServerException exception;
 
-    public ServerExceptionScriptEvent() {
+    public ServerGeneratesExceptionScriptEvent() {
         instance = this;
     }
 
     @Override
     public boolean couldMatch(ScriptContainer scriptContainer, String s) {
-        return CoreUtilities.toLowerCase(s).startsWith("paper server exception");
+        return CoreUtilities.toLowerCase(s).startsWith("paper server generates exception");
     }
 
     @Override
@@ -51,7 +51,7 @@ public class ServerExceptionScriptEvent extends ScriptEvent implements Listener 
 
     @Override
     public String getName() {
-        return "PaperServerException";
+        return "PaperServerGeneratesException";
     }
 
     @Override
